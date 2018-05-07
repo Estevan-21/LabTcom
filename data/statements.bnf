@@ -1,4 +1,4 @@
 <stat> ::= 'if' <bool-exp> 'then' <stat> ['else' <stat>] |
-           'while' <bool-exp> 'do' <stat> ;
+           'while' <bool-exp> 'do' <stat> | 'stop' | <var> ;
 <bool-exp> ::= <var> '<' <var> | <var> '>' <var> | 'not' <var> | '(' <bool-exp> ')';
 <var> ::= 'a' | 'b'

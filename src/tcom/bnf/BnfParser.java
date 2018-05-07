@@ -60,34 +60,70 @@ public class BnfParser extends BasicParser{
 	public void parse() throws ParseException{
 		sigToken();
 		//Modificación BNF
-		ini();
-		test();
+		ini();		
 		expect(EOF);
 	}
 	
 	
 	public void ini() throws ParseException{
-		if(tokenReadableName(token.getType())=="terminal"){			
-			if(token.getText()=="if") {
+		while (token.getType()!=EOF){
+			if(tokenReadableName(token.getType())=="terminal"){		
+				
+				if(token.getText().equals("'if'")) {
+					System.out.print("\n"+ token.getText());				
+					sigToken();
+					bool();				
+				}
+				
+				else if(token.getText().equals("'while'")) {
+					System.out.print("\n"+token.getText());					
+					sigToken();
+					bool();	
+				}
+				
+				else if(token.getText().equals("'stop'")) {
+					System.out.print("\n"+token.getText());					
+				}	
+				
+				else if(token.getText().equals("'a'") || token.getText().equals("'b'")) {
+					System.out.print("\n"+token.getText());					
+					var();
+				}
+			}			
+			sigToken();
+		}
+	}		
+	
+	public void bool() throws ParseException{
+		if(token.getText().equals("'a'") || token.getText().equals("'b'")) {
+			System.out.print("\n"+token.getText());	
+			sigToken();
+			if(token.getText().equals("'<'") || token.getText().equals("'>'")) {
+				System.out.print("\n"+token.getText());	
 				sigToken();
-				bool();
+				if(token.getText().equals("'a'") || token.getText().equals("'b'")) {
+					System.out.print("\n"+token.getText());	
+					sigToken();
+				}
+				else {
+					throw new ParseException("Error Sintactico, se esperaba 'a' o 'b' y se recibió"+ token.getText());
+				}
 			}
-			if(token.getText()=="while") {
-				
+			else {
+				throw new ParseException("Error Sintactico, se esperaba '>' o '>' y se recibió"+ token.getText());
 			}
-			if(token.getText()=="stop") {
-				
-			}
-			if(token.getText()=="<var>") {
-				
-			}					
+		}
+		else if(token.getText().equals("'not'")){
+			
+		}
+		else {
+			//throw new ParseException("Error Sintactico");
 		}
 	}
 	
-	public void bool() throws ParseException{
-		if(token.getText()=="<var>") {
-			
-		}
+	
+	public void var() throws ParseException{
+		
 	}
 	
 	private void test(){

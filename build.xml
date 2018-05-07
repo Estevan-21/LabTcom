@@ -9,7 +9,7 @@
 	<property name="data.dir" location="${basedir}/data" />
 	<property name="proyecto.dir" location="${tcom.dir}/ProyectoXml/" />
 
-	<property name="data.file" value="statements.bnf" />
+	<property name="data.file" value="Prueba1.g" />
 
 	<path id="run.classpath">
 		<pathelement location="${bin.dir}" />

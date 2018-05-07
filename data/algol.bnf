@@ -1,0 +1,8 @@
+<program> ::= <block> | <compound statement> ;
+<block> ::= <unlabelled block> | <label> ':'<block> ;
+<compound statement> ::= 
+    <unlabelled compound> | <label> ':'<compound statement>;
+<unlabelled block> ::= <block head> ';' <compound tail> ;
+<unlabelled compound> ::= 'begin' <compound tail> ;
+<block head> ::= 'begin' <declaration> | <block head> ';'<declaration> ;
+<compound tail> ::= <statement> 'end' | <statement> ';' <compound tail> ';'

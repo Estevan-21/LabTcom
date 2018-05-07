@@ -1,0 +1,2 @@
+<program> ::= { <label> ':' } 'begin' { <declaration> ';' }
+               <statement> { ';' <statement> } 'end'
